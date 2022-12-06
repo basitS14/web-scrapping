@@ -60,7 +60,7 @@ def Save_Articles(search , article_queue):
     
     for i in range(len(queue)):
         if search in queue[i]:
-            with open(f'saved/article{i}','w',encoding="utf-8") as f:
+            with open(f'saved/article{i}','w',encoding="utf-8") as f:                            #change file location here
                 f.write(f'{article_queue[i]}')
                 print("File Saved !!!")
 
