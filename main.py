@@ -1,6 +1,10 @@
 import requests as rq
 from bs4 import BeautifulSoup
 import array as arr
+import tkinter as tk
+import webbrowser as wb
+
+window = tk.Tk()
 
 
 queue = [] 
@@ -40,15 +44,47 @@ for publishers in publishers:
 
     date = publishers.find('span', clas = "date").text
     date_queue.append(date)
+import os
+def read_more(i):
+    
+    wb.open(f'{read_more_queue[i]}')
 
+    
 def Main_Body(queue,author_queue,time_queue,read_more_queue,date_queue):
     try:
-        for i in  range(len(read_more_queue)):
-            print(f'\n"{queue[i]}"') 
-            print(f"Author: {author_queue[i]}")
-            print(f"{date_queue[i]} {time_queue[i]}")
-            print(f"Read Full Article: {read_more_queue[i]}")
+        msg = tk.Label(text="News Stand", foreground="black" , background="red", master= window,width = 100).pack()
+        
+        
+        headline = tk.Label(text=f"{queue[0]}", foreground = "black", background="gray", width = 100).pack()
+        summary = tk.Label(text=f"{article_queue[0]}", foreground = "black", background= "#ffbd8a",justify="center",wraplength=700, width = 100 ).pack()
+        full_news_btn = tk.Button(text="Read more", bg="black", fg="white", border=5, default="active",command= lambda : read_more(0)).pack()
 
+        headline = tk.Label(text=f"{queue[1]}", foreground = "black", background="gray", width = 100).pack()
+        summary = tk.Label(text=f"{article_queue[1]}", foreground = "black", background= "#ffbd8a",justify="center",wraplength=700, width = 100 ).pack()
+        full_news_btn = tk.Button(text="Read more", bg="black", fg="white", border=5, default="active",command= lambda : read_more(1)).pack()
+
+        headline = tk.Label(text=f"{queue[2]}", foreground = "black", background="gray", width = 100).pack()
+        summary = tk.Label(text=f"{article_queue[2]}", foreground = "black", background= "#ffbd8a",justify="center",wraplength=700, width = 100 ).pack()
+        full_news_btn = tk.Button(text="Read more", bg="black", fg="white", border=5, default="active",command= lambda : read_more(2)).pack()
+
+        headline = tk.Label(text=f"{queue[3]}", foreground = "black", background="gray", width = 100).pack()
+        summary = tk.Label(text=f"{article_queue[3]}", foreground = "black", background= "#ffbd8a",justify="center",wraplength=700, width = 100 ).pack()
+        full_news_btn = tk.Button(text="Read more", bg="black", fg="white", border=5, default="active",command= lambda : read_more(3)).pack()
+
+
+        headline = tk.Label(text=f"{queue[4]}", foreground = "black", background="gray", width = 100).pack()
+        summary = tk.Label(text=f"{article_queue[4]}", foreground = "black", background= "#ffbd8a",justify="center",wraplength=700, width = 100 ).pack()
+        full_news_btn = tk.Button(text="Read more", bg="black", fg="white", border=5, default="active",command= lambda : read_more(4)).pack()
+
+
+
+        
+            # print(f'\n"{queue[i]}"') 
+            # print(f'\n{article_queue[i]}')
+            # print(f"Author: {author_queue[i]}")
+            # print(f"{date_queue[i]} {time_queue[i]}")
+            # print(f"Read Full Article: {read_more_queue[i]}")
+            
     except:
         if (queue == None):
             print("list is empty")
@@ -67,11 +103,12 @@ def Save_Articles(search , article_queue):
 
 if __name__ == '__main__' :
     Main_Body(queue, author_queue, time_queue, read_more_queue, date_queue)
-    print("\nHeadlines will change after few minutes .....")
-    ch = 1
-    while ch == 1:
-        print("\nDo you want to save any article?")
-        search = input("-> write keywords\n")
-        Save_Articles(search, article_queue)
+    window.mainloop()
+    # print("\nHeadlines will change after few minutes .....")
+    # ch = 1
+    # while ch == 1:
+    #     print("\nDo you want to save any article?")
+    #     search = input("-> write keywords\n")
+    #     Save_Articles(search, article_queue)
 
-        ch = input("Save another article (1 or 0):")
+    #     ch = input("Save another article (1 or 0):")
